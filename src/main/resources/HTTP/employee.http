@@ -1,0 +1,30 @@
+### Create Employee
+POST http://localhost:8080/api/v1/employee/create
+Content-Type: application/json
+
+{
+  "name": "Amir",
+  "lastname": "Timur",
+  "phone": "333",
+  "status": "ACTIVE",
+  "employeeId": "b45294ac-865f-4032-bc05-58811f0ec623"
+}
+
+### Get by id
+GET http://localhost:8080/api/v1/employee/{{id}}
+Content-Type: application/json
+
+### Update employee
+PUT http://localhost:8080/api/v1/employee/update/{{id}}
+Content-Type: application/json
+
+{
+  "name": "",
+  "lastname": "",
+  "phone": "",
+  "status": "ACTIVE",
+  "employeeId": ""
+}
+
+### Delete employee
+DELETE http://localhost:8080/api/v1/employee/delete/{{id}}
