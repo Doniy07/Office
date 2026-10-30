@@ -13,9 +13,6 @@ public class ApiResponse<T> {
 
     private T data;
 
-    public ApiResponse() {
-    }
-
     public ApiResponse(Integer code, Boolean isError) {
         this.code = code;
         this.isError = isError;
@@ -29,15 +26,16 @@ public class ApiResponse<T> {
         this.data = null;
     }
 
-    public ApiResponse(Integer code, Boolean isError, T data) {
+    public ApiResponse(Integer code, Boolean isError, T data, String message) {
         this.code = code;
         this.isError = isError;
         this.data = data;
+        this.message = message;
     }
 
 
     public static <T> ApiResponse<T> ok(T data) {
-        return new ApiResponse<T>(200, false, data);
+        return new ApiResponse<T>(200, false, data, "Successful");
     }
 
     public static <T> ApiResponse<T> ok() {

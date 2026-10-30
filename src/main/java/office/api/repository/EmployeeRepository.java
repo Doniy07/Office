@@ -13,14 +13,14 @@ import java.util.Optional;
 @Repository
 public interface EmployeeRepository extends JpaRepository<EmployeeEntity, String> {
 
-    @Query("select e from EmployeeEntity e where e.visible = true and e.id = ?1")
-    Optional<EmployeeEntity> findByIdAndVisibleTrue(String id);
+//    @Query("select e from EmployeeEntity e where e.visible = true and e.id = ?1")
+//    Optional<EmployeeEntity> findByIdAndVisibleTrue(String id);
 
-    @Transactional
-    @Modifying
-    @Query("update EmployeeEntity e set e.visible = false, e.deletedDate = CURRENT_TIMESTAMP where e.id = ?1 and e.visible is true")
-    int deleteByEmployeeId(String id);
+//    @Transactional
+//    @Modifying
+//    @Query("update EmployeeEntity e set e.visible = false, e.deletedDate = CURRENT_TIMESTAMP where e.id = ?1 and e.visible is true")
+//    int deleteByEmployeeId(String id);
 
-    @Query("select e.id from EmployeeEntity e where e.visible = true and e.officeId = ?1 ")
-    List<String> findAllByEmployeeIdAndVisibleTrue(String officeId);
+//    @Query("select e.id from EmployeeEntity e where e.visible = true and e.officeId = ?1 ")
+//    List<String> findAllByEmployeeIdAndVisibleTrue(String officeId);
 }

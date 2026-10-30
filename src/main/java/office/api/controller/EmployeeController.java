@@ -26,31 +26,31 @@ public class EmployeeController {
     public static final String UPDATE = "/update/{id}";
     public static final String DELETE = "/delete/{id}";
 
-    @PostMapping(CREATE)
-    public ResponseEntity<ApiResponse<EmployeeResponseDTO>> create(
-            @Valid @RequestBody EmployeeRequestDTO request) {
-        return ResponseEntity.ok(employeeService.save(request));
-    }
+//    @PostMapping(CREATE)
+//    public ResponseEntity<ApiResponse<EmployeeResponseDTO>> create(
+//            @Valid @RequestBody EmployeeRequestDTO request) {
+//        return ResponseEntity.ok(employeeService.save(request));
+//    }
 
-    @GetMapping(FETCH_BY_ID)
-    public ResponseEntity<ApiResponse<EmployeeResponseDTO>> getById(
-            @PathVariable("id") String officeId) {
-        log.info("get book by id: {}", officeId);
-        return ResponseEntity.ok(employeeService.findById(officeId));
-    }
+//    @GetMapping(FETCH_BY_ID)
+//    public ResponseEntity<ApiResponse<EmployeeResponseDTO>> getById(
+//            @PathVariable("id") String officeId) {
+//        log.info("get book by id: {}", officeId);
+//        return ResponseEntity.ok(employeeService.findById(officeId));
+//    }
 
-    @PutMapping(UPDATE)
-    public ResponseEntity<ApiResponse<EmployeeResponseDTO>> update(
-            @PathVariable("id") String officeId,
-            @Valid @RequestBody EmployeeRequestDTO request) {
-        return ResponseEntity.ok(employeeService.update(officeId, request));
-    }
+//    @PutMapping(UPDATE)
+//    public ResponseEntity<ApiResponse<EmployeeResponseDTO>> update(
+//            @PathVariable("id") String officeId,
+//            @Valid @RequestBody EmployeeRequestDTO request) {
+//        return ResponseEntity.ok(employeeService.update(officeId, request));
+//    }
 
-    @DeleteMapping(DELETE)
-    public ResponseEntity<ApiResponse> delete(
-            @PathVariable("id") String bookId) {
-        log.info("delete employee with id: {}", bookId);
-        return ResponseEntity.ok(employeeService.deleteById(bookId));
-    }
+//    @DeleteMapping(DELETE)
+//    public ResponseEntity<ApiResponse> delete(
+//            @PathVariable("id") String bookId) {
+//        log.info("delete employee with id: {}", bookId);
+//        return ResponseEntity.ok(employeeService.deleteById(bookId));
+//    }
 
 }
