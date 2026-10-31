@@ -30,7 +30,7 @@ public class EmployeeEntity extends BaseEntity {
 
     @Column(name = "office_id")
     String officeId;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "office_id", insertable = false, updatable = false)
     OfficeEntity office;
 }

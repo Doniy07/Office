@@ -5,12 +5,12 @@ import office.api.dto.office.OfficeResponseDTO;
 import office.api.util.ApiResponse;
 
 public interface OfficeService {
-//    ApiResponse<OfficeResponseDTO> findById(String id);
+    ApiResponse<OfficeResponseDTO> findById(String id);
 
     ApiResponse<OfficeResponseDTO> save(OfficeRequestDTO request);
 
-//    ApiResponse<OfficeResponseDTO> update(String officeId, OfficeRequestDTO request);
+    ApiResponse<OfficeResponseDTO> update(String officeId, OfficeRequestDTO.OfficeUpdateDTO request);
 
-//    ApiResponse deleteById(String employeeId);
+    ApiResponse<?> deleteById(String employeeId);
 
 }

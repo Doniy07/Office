@@ -9,6 +9,7 @@ import office.api.dto.office.OfficeRequestDTO;
 import office.api.dto.office.OfficeResponseDTO;
 import office.api.service.office.OfficeService;
 import office.api.util.ApiResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,24 +34,25 @@ public class OfficeController {
         return ResponseEntity.ok(officeService.save(request));
     }
 
-//    @GetMapping(FETCH_BY_ID)
-//    public ResponseEntity<ApiResponse<OfficeResponseDTO>> getById(
-//            @PathVariable("id") String officeId) {
-//        log.info("get book by id: {}", officeId);
-//        return ResponseEntity.ok(officeService.findById(officeId));
-//    }
+    @GetMapping(FETCH_BY_ID)
+    public ResponseEntity<ApiResponse<OfficeResponseDTO>> getById(
+            @PathVariable("id") String officeId) {
+        log.info("get office by id : {}", officeId);
+        return ResponseEntity.ok(officeService.findById(officeId));
+    }
 
-//    @PutMapping(UPDATE)
-//    public ResponseEntity<ApiResponse<OfficeResponseDTO>> update(
-//            @PathVariable("id") String officeId,
-//            @Valid @RequestBody OfficeRequestDTO request) {
-//        return ResponseEntity.ok(officeService.update(officeId, request));
-//    }
+    @PutMapping(UPDATE)
+    public ResponseEntity<ApiResponse<OfficeResponseDTO>> update(
+            @PathVariable("id") String officeId,
+            @Valid @RequestBody OfficeRequestDTO.OfficeUpdateDTO request) {
+        log.info("update office by id {}", officeId);
+        return ResponseEntity.ok(officeService.update(officeId, request));
+    }
 
-//    @DeleteMapping(DELETE)
-//    public ResponseEntity<ApiResponse> delete(
-//            @PathVariable("id") String bookId) {
-//        log.info("delete minivan with id: {}", bookId);
-//        return ResponseEntity.ok(officeService.deleteById(bookId));
-//    }
+    @DeleteMapping(DELETE)
+    public ResponseEntity<ApiResponse<?>> delete(
+            @PathVariable("id") String bookId) {
+        log.info("Delete office with id: {}", bookId);
+        return ResponseEntity.ok(officeService.deleteById(bookId));
+    }
 }

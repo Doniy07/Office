@@ -9,17 +9,16 @@ Content-Type: application/json
 }
 
 ### Get office by id
-GET http://localhost:8080/api/v1/office/edd31323-abf1-4dc1-b0db-13f8f7c846a9
+GET http://localhost:8080/api/v1/office/92423d3d-492d-460a-9242-39afe1a721f4
 Content-Type: application/json
 
 ### Update office
-PUT http://localhost:8080/api/v1/office/update/b45294ac-865f-4032-bc05-58811f0ec623
+PUT http://localhost:8080/api/v1/office/update/92423d3d-492d-460a-9242-39afe1a721f4
 Content-Type: application/json
 
 {
-
-  "companyName": "Bosh osh"
+  "companyName": "Sapogi"
 }
 
 ### Delete office
-DELETE http://localhost:8080/api/v1/office/delete/b45294ac-865f-4032-bc05-58811f0ec623
+DELETE http://localhost:8080/api/v1/office/delete/888a8252-afcc-440a-b080-6f039c9b6b19

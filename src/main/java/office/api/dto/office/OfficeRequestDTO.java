@@ -10,4 +10,10 @@ public record OfficeRequestDTO(
         @NotBlank String address,
         @Size(min = 3, max = 50) @NotBlank String companyName,
         @NotNull String companyFloor
-) {}
+) {
+    public record OfficeUpdateDTO(
+            String address,
+            String companyName,
+            String companyFloor
+    ){}
+}
