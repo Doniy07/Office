@@ -3,15 +3,15 @@ POST http://localhost:8080/api/v1/employee/create
 Content-Type: application/json
 
 {
-  "name": "Amir",
-  "lastname": "Timur",
-  "phone": "333",
+  "name": "Bobur",
+  "lastname": "Boburov",
+  "phone": "123",
   "status": "ACTIVE",
-  "employeeId": "b45294ac-865f-4032-bc05-58811f0ec623"
+  "officeId": "81f4d97d-2624-4ef9-a99e-0474c92b7b35"
 }
 
 ### Get by id
-GET http://localhost:8080/api/v1/employee/{{id}}
+GET http://localhost:8080/api/v1/employee/67d92081-ab1b-470d-b000-5ed7635be04d
 Content-Type: application/json
 
 ### Update employee
@@ -27,4 +27,4 @@ Content-Type: application/json
 }
 
 ### Delete employee
-DELETE http://localhost:8080/api/v1/employee/delete/{{id}}
+DELETE http://localhost:8080/api/v1/employee/delete/67d92081-ab1b-470d-b000-5ed7635be04d

@@ -8,11 +8,8 @@ import office.api.dto.office.OfficeResponseDTO;
 import office.api.entity.OfficeEntity;
 import office.api.exception.BadRequestException;
 import office.api.repository.OfficeRepository;
-import office.api.service.employee.EmployeeImpService;
 import office.api.util.ApiResponse;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Slf4j
 @Service
@@ -20,7 +17,6 @@ import java.time.LocalDateTime;
 public class OfficeImplService implements OfficeService {
 
     private final OfficeRepository officeRepository;
-    private final EmployeeImpService employeeImpService;
 
     @Override
     @Transactional
@@ -44,7 +40,7 @@ public class OfficeImplService implements OfficeService {
         if (request.address() != null) entity.setAddress(request.address());
         if (request.companyName() != null) entity.setCompanyName(request.companyName());
         if (request.companyFloor() != null) entity.setCompanyFloor(request.companyFloor());
-        entity.setUpdatedDate(LocalDateTime.now());
+//        entity.setUpdatedDate(LocalDateTime.now());
         officeRepository.save(entity);
         return new ApiResponse<>("Successful update", 200, false);
     }

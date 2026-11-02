@@ -3,9 +3,9 @@ POST http://localhost:8080/api/v1/office/create
 Content-Type: application/json
 
 {
-  "address": "Muqumiy, Piramit touwr",
-  "companyName": "Osh Bosh",
-  "companyFloor": "FOURTH"
+  "address": "Muqimiy, 59",
+  "companyName": "Paynet",
+  "companyFloor": "FIRST"
 }
 
 ### Get office by id
@@ -13,7 +13,7 @@ GET http://localhost:8080/api/v1/office/92423d3d-492d-460a-9242-39afe1a721f4
 Content-Type: application/json
 
 ### Update office
-PUT http://localhost:8080/api/v1/office/update/92423d3d-492d-460a-9242-39afe1a721f4
+PUT http://localhost:8080/api/v1/office/update/6a0ec852-b5fe-43b3-acd2-28459710b853
 Content-Type: application/json
 
 {
@@ -21,4 +21,4 @@ Content-Type: application/json
 }
 
 ### Delete office
-DELETE http://localhost:8080/api/v1/office/delete/888a8252-afcc-440a-b080-6f039c9b6b19
+DELETE http://localhost:8080/api/v1/office/delete/81f4d97d-2624-4ef9-a99e-0474c92b7b35

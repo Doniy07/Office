@@ -1,22 +1,15 @@
 package office.api.service.employee;
 
-import jakarta.transaction.Transactional;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import office.api.dto.employee.EmployeeRequestDTO;
 import office.api.dto.employee.EmployeeResponseDTO;
 import office.api.entity.EmployeeEntity;
 import office.api.exception.BadRequestException;
 import office.api.repository.EmployeeRepository;
-import office.api.repository.OfficeRepository;
+import office.api.service.office.OfficeService;
 import office.api.util.ApiResponse;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.function.Function;
 
 @Slf4j
 @Service
@@ -24,42 +17,48 @@ import java.util.function.Function;
 public class EmployeeImpService implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
-    private final OfficeRepository officeRepository;
+    private final OfficeService officeService;
 
-//    @Override
-//    public ApiResponse<EmployeeResponseDTO> findById(String id) {
-//        log.info("Find employee by id: {}", id);
-//        return ApiResponse.ok(mapToResponse().apply(getById(id)));
-//    }
+    @Override
+    public ApiResponse<EmployeeResponseDTO> findById(String id) {
+        log.info("Find employee by id: {}", id);
+        return ApiResponse.ok(mapToResponse(getById(id)));
+    }
 
-//    @Override
+    @Override
 //    @Transactional
-//    public ApiResponse<EmployeeResponseDTO> save(EmployeeRequestDTO request) {
-//        officeRepository.findById(request.employeeId());
-//        employeeRepository.save(mapToEntity().apply(request));
-//        return ApiResponse.ok();
-//    }
+    public ApiResponse<EmployeeResponseDTO> save(EmployeeRequestDTO request) {
+        log.info("Office ", request.officeId());
+        officeService.findById(request.officeId());
+        EmployeeEntity entity = employeeRepository.save(mapToEntity(request));
+        return ApiResponse.ok(mapToResponse(entity));
+    }
 
-//    @Override
-//    @Transactional
-//    public ApiResponse<EmployeeResponseDTO> update(String employeeId, EmployeeRequestDTO request) {
-//        EmployeeEntity employee = getById(employeeId);
-//        employee.setName(request.name());
-//        employee.setLastname(request.lastname());
-//        employee.setPhone(request.phone());
-//        employee.setStatus(request.status());
-//        employee.setUpdatedDate(LocalDateTime.now());
-//        employeeRepository.save(employee);
-//        log.info("Update employee with id: {}", employeeId);
-//        return ApiResponse.ok(mapToResponse().apply(employee));
-//    }
+    @Override
+    public ApiResponse<EmployeeResponseDTO> update(String employeeId, EmployeeRequestDTO.EmployeeUpdateDTO request) {
+        EmployeeEntity employee = getById(employeeId);
+        if (request.name() != null) employee.setName(request.name());
+        if (request.lastname() != null) employee.setLastname(request.lastname());
+        if (request.phone() != null) employee.setPhone(request.phone());
+        if (request.status() != null) employee.setStatus(request.status());
+//        if(request != null) employee.setUpdatedDate(LocalDateTime.now());
+        employeeRepository.save(employee);
+        return new ApiResponse<>("Successful update", 200, false);
+    }
 
-//    private EmployeeEntity getById(String employeeId) {
-//        return employeeRepository.findByIdAndVisibleTrue(employeeId).orElseThrow(() -> {
-//            log.warn("Employee with id {} not found", employeeId);
-//            return new BadRequestException("Employee not found");
-//        });
-//    }
+    @Override
+    public ApiResponse<?> deleteById(String employeeId) {
+        getById(employeeId);
+        employeeRepository.deleteById(employeeId);
+        return new ApiResponse<>("Successful delete", 200, false);
+    }
+
+    private EmployeeEntity getById(String employeeId) {
+        return employeeRepository.findById(employeeId).orElseThrow(() -> {
+            log.warn("Employee with id {} not found", employeeId);
+            return new BadRequestException("Employee not found");
+        });
+    }
 
 //    @Override
 //    public ApiResponse deleteById(String employeeId) {
@@ -78,22 +77,25 @@ public class EmployeeImpService implements EmployeeService {
 //        });
 //    }
 
-    private Function<EmployeeRequestDTO, EmployeeEntity> mapToEntity() {
-        return request -> EmployeeEntity.builder()
+    private EmployeeEntity mapToEntity(EmployeeRequestDTO request) {
+        return EmployeeEntity.builder()
                 .name(request.name())
                 .lastname(request.lastname())
                 .phone(request.phone())
                 .status(request.status())
-                .officeId(request.employeeId())
+                .officeId(request.officeId())
                 .build();
     }
 
-    private Function<EmployeeEntity, EmployeeResponseDTO> mapToResponse() {
-        return entity -> EmployeeResponseDTO.builder()
+    private EmployeeResponseDTO mapToResponse(EmployeeEntity entity) {
+        return EmployeeResponseDTO.builder()
+                .id(entity.getId())
                 .name(entity.getName())
                 .lastname(entity.getLastname())
                 .phone(entity.getPhone())
                 .status(entity.getStatus())
+                .createdDate(entity.getCreatedDate())
+                .officeId(entity.getOfficeId())
                 .build();
     }
 }

@@ -19,6 +19,12 @@ public record EmployeeRequestDTO(
         String phone,
         @NotNull
         EmployeeStatus status,
-        @NotBlank
-        String employeeId
-){}
+        String officeId){
+
+        public record EmployeeUpdateDTO(
+                String name,
+                String lastname,
+                String phone,
+                EmployeeStatus status
+        ){}
+}
