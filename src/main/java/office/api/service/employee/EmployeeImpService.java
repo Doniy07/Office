@@ -28,7 +28,7 @@ public class EmployeeImpService implements EmployeeService {
     @Override
 //    @Transactional
     public ApiResponse<EmployeeResponseDTO> save(EmployeeRequestDTO request) {
-        log.info("Office ", request.officeId());
+        log.info("Save office ", request);
         officeService.findById(request.officeId());
         EmployeeEntity entity = employeeRepository.save(mapToEntity(request));
         return ApiResponse.ok(mapToResponse(entity));

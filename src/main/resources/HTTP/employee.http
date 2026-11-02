@@ -15,7 +15,7 @@ GET http://localhost:8080/api/v1/employee/67d92081-ab1b-470d-b000-5ed7635be04d
 Content-Type: application/json
 
 ### Update employee
-PUT http://localhost:8080/api/v1/employee/update/{{id}}
+PUT http://localhost:8080/api/v1/employee/update/2a2249c4-6553-466c-b9fa-b7c37d12e444
 Content-Type: application/json
 
 {
